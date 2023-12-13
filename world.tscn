@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://6egm07y2y00w"]
+[gd_scene load_steps=8 format=3 uid="uid://6egm07y2y00w"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_powj0"]
 [ext_resource type="Texture2D" uid="uid://dhbv6eyh45c07" path="res://icon.svg" id="2_mvr5s"]
 [ext_resource type="Texture2D" uid="uid://clwpo83yorvtm" path="res://enemy.png" id="3_1jmqy"]
+[ext_resource type="PackedScene" uid="uid://uo0pq0rl1uod" path="res://player.tscn" id="3_tjnfp"]
+[ext_resource type="PackedScene" uid="uid://cov3gwtqj5qar" path="res://Enemy.tscn" id="5_5eg2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swu16"]
 size = Vector2(130, 129)
@@ -16,20 +18,26 @@ radius = 68.0074
 script = ExtResource("1_powj0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(174, 219)
 texture = ExtResource("2_mvr5s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, -0.5)
+position = Vector2(175, 218)
 shape = SubResource("RectangleShape2D_swu16")
+
+[node name="player" parent="Player" instance=ExtResource("3_tjnfp")]
 
 [node name="Enemy" type="RigidBody2D" parent="."]
 gravity_scale = 2.66454e-15
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-position = Vector2(80, -132.5)
+position = Vector2(533, 270)
 scale = Vector2(0.385, 0.3525)
 texture = ExtResource("3_1jmqy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(88, -134)
+position = Vector2(545, 269)
 shape = SubResource("CircleShape2D_7amrw")
+
+[node name="Enemy" parent="Enemy" instance=ExtResource("5_5eg2p")]
+position = Vector2(544, 271)
